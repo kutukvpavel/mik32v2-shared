@@ -141,8 +141,3 @@ void UART_ClearRxFifo(UART_TypeDef* uart)
     }
 }
 
-void __attribute__((weak)) xputc(char c)
-{
-	UART_WriteByte(UART_0, c);
-	UART_WaitTransmission(UART_0);
-}

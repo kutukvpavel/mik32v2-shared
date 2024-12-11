@@ -122,7 +122,4 @@ void UART_Read(UART_TypeDef* uart, uint8_t* byte_array, uint32_t count);
  */
 void UART_ClearRxFifo(UART_TypeDef* uart);
 
-void __attribute__((weak)) xputc(char c);
-
-
 #endif // UART_LIB_H_INCLUDED
