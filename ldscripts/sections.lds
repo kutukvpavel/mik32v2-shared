@@ -5,8 +5,6 @@ SECTIONS {
         *crt0.o(.text .text.*)
         *(.text.smallsysteminit)
         *(.text.SmallSystemInit)
-        . = ORIGIN(REGION_TEXT) + 0xC0;
-        KEEP(*crt0.o(.trap_text))
 
         *(.text)
         *(.text.*)
@@ -19,7 +17,11 @@ SECTIONS {
     .data : 
     AT( __TEXT_END__ ) {
         PROVIDE(__DATA_START__ = .);
-        _gp = .;
+        . = ORIGIN(ram) + 0xC0;
+        KEEP(*crt0.o(.trap_text))
+        . = ALIGN(4);
+        __global_pointer$ = . + 0x7FC;
+        _gp = __global_pointer$;
         *(.srodata.cst16) *(.srodata.cst8) *(.srodata.cst4) *(.srodata.cst2) *(.srodata*)
         *(.sdata .sdata.* .gnu.linkonce.s.*)
         *(.data .data.*)
